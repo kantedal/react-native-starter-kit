@@ -1,6 +1,19 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const babelOptions = {
+  "presets": [
+    "react",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "es2016"
+  ]
+};
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -26,9 +39,22 @@ module.exports = {
         loader: 'json-loader',
       },
       {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'babel-loader?presets[]=es2015!ts-loader',
         query: {
           presets: ['es2015', 'react', 'stage-0'],
           plugins: [
@@ -61,4 +87,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
 };

@@ -1,8 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
   entry: [path.join(__dirname, '../src/web/index')],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
+  },
   output: {
     path: path.join(__dirname, '../build/'),
     filename: 'bundle.js',
@@ -23,7 +27,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'babel-loader!ts-loader',
         query: {
           presets: ['es2015', 'react', 'stage-0'],
         },

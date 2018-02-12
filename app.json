@@ -4,6 +4,14 @@
     "name": "React Native Starter Kit",
     "slug": "react-native-starter-kit",
     "icon": "src/images/app-icon.png",
-    "privacy": "public"
+    "privacy": "public",
+    "packagerOpts": {
+      "sourceExts": [
+        "ts",
+        "tsx",
+        "js"
+      ],
+      "transformer": "node_modules/react-native-typescript-transformer/index.js"
+    }
   }
 }
