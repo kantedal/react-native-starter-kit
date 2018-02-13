@@ -1,6 +1,6 @@
-import Store from '../store/recipes';
+import Store from '../store/recipes'
 
-export const initialState = Store;
+export const initialState = Store
 
 export default function recipeReducer(state = initialState, action) {
   switch (action.type) {
@@ -8,7 +8,7 @@ export default function recipeReducer(state = initialState, action) {
       return {
         ...state,
         favourites: action.data || [],
-      };
+      }
     }
     case 'MEALS_REPLACE': {
       return {
@@ -16,16 +16,16 @@ export default function recipeReducer(state = initialState, action) {
         error: null,
         loading: false,
         meals: action.data,
-      };
+      }
     }
     case 'RECIPES_ERROR': {
       return {
         ...state,
         error: action.data,
-      };
+      }
     }
     case 'RECIPES_REPLACE': {
-      let recipes = [];
+      let recipes = []
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
@@ -38,7 +38,7 @@ export default function recipeReducer(state = initialState, action) {
           author: item.author,
           ingredients: item.ingredients,
           method: item.method,
-        }));
+        }))
       }
 
       return {
@@ -46,9 +46,9 @@ export default function recipeReducer(state = initialState, action) {
         error: null,
         loading: false,
         recipes,
-      };
+      }
     }
     default:
-      return state;
+      return state
   }
 }

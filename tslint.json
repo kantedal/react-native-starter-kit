@@ -44,6 +44,7 @@
       "no-bitwise": false,
       "import-name": false,
       "no-conditional-assignment": true,
+      "prefer-method-signature": false,
       "no-console": [true,
           "debug",
           "info",

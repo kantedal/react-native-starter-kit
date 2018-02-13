@@ -5,13 +5,13 @@ import { login } from '../actions/member'
 
 namespace Login {
   export interface Props {
-    Layout: any
+    Layout: () => React.Component<any>
     member: any
-    onFormSubmit(): void
     isLoading: boolean
     infoMessage: string
     errorMessage: string
     successMessage: string
+    onFormSubmit: () => void    
   }
 }
 
